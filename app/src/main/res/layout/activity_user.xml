@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#1E7AD7">
+
+        <TextView
+            android:id="@+id/tv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:drawableLeft="@drawable/icon_back"
+            android:text="@string/app_logout"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="联动平台"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/ib_set"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/setting" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_text"
+        android:layout_width="match_parent"
+        android:layout_height="265dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_main" />
+
+
+    <com.example.negotiation.utils.PhoneCode
+        android:id="@+id/pc_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top"
+        android:layout_margin="50dp" />
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:background="@color/white">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:text="@string/user_name"-->
+    <!--android:textSize="17sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_user_name"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:textSize="17sp"-->
+    <!--android:text="张三" />-->
+    <!--</RelativeLayout>-->
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+
+    <!--android:background="@color/grey"/>-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:background="@color/white">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:text="@string/sip_name"-->
+    <!--android:textSize="17sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_sip_name"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:textSize="17sp"-->
+    <!--android:text="张三" />-->
+    <!--</RelativeLayout>-->
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="@color/grey"/>-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:background="@color/white">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:text="@string/login_state"-->
+    <!--android:textSize="17sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_login_state"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:textSize="17sp"-->
+    <!--android:text="张三" />-->
+    <!--</RelativeLayout>-->
+</RelativeLayout>

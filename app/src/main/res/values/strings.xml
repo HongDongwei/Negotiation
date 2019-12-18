@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">SipCall</string>
+
+    <string name="app_logout" translatable="false">登出</string>
+    <string name="user_name" translatable="false">用户名</string>
+    <string name="sip_name" translatable="false">sip账号</string>
+    <string name="login_state" translatable="false">登录状态</string>
+    <string name="out_of_time" translatable="false">超时</string>
+</resources>
