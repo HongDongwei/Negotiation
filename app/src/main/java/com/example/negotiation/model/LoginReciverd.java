@@ -1,26 +1,27 @@
 package com.example.negotiation.model;
 
+
 import com.example.negotiation.utils.HexUtils;
 
-import static com.example.negotiation.api.VTAState.ALL_LONG;
-import static com.example.negotiation.api.VTAState.COMMAND_TYPE_LONG;
-import static com.example.negotiation.api.VTAState.IDENTIFICATION;
-import static com.example.negotiation.api.VTAState.JSMPEGSERVERIP;
-import static com.example.negotiation.api.VTAState.JSMPEGSERVERPORT;
-import static com.example.negotiation.api.VTAState.LOGINRESULT;
-import static com.example.negotiation.api.VTAState.MESSAGE_CATRGORY;
-import static com.example.negotiation.api.VTAState.MESSAGE_LONG;
-import static com.example.negotiation.api.VTAState.MESSAGE_RECEIVE;
-import static com.example.negotiation.api.VTAState.MESSAGE_SEND;
-import static com.example.negotiation.api.VTAState.MESSAGE_SPECIES;
-import static com.example.negotiation.api.VTAState.STRING_LONG;
-import static com.example.negotiation.api.VTAState.STUNSERVERIP;
-import static com.example.negotiation.api.VTAState.STUNSERVERPORT;
-import static com.example.negotiation.api.VTAState.TELLERID;
-import static com.example.negotiation.api.VTAState.TELLERTYPE;
-import static com.example.negotiation.api.VTAState.TURNSERVERIP;
-import static com.example.negotiation.api.VTAState.TURNSERVERPORT;
-import static com.example.negotiation.api.VTAState.VERSION_LONG;
+import static com.example.negotiation.base.VTAState.ALL_LONG;
+import static com.example.negotiation.base.VTAState.COMMAND_TYPE_LONG;
+import static com.example.negotiation.base.VTAState.IDENTIFICATION;
+import static com.example.negotiation.base.VTAState.JSMPEGSERVERIP;
+import static com.example.negotiation.base.VTAState.JSMPEGSERVERPORT;
+import static com.example.negotiation.base.VTAState.LOGINRESULT;
+import static com.example.negotiation.base.VTAState.MESSAGE_CATRGORY;
+import static com.example.negotiation.base.VTAState.MESSAGE_LONG;
+import static com.example.negotiation.base.VTAState.MESSAGE_RECEIVE;
+import static com.example.negotiation.base.VTAState.MESSAGE_SEND;
+import static com.example.negotiation.base.VTAState.MESSAGE_SPECIES;
+import static com.example.negotiation.base.VTAState.STRING_LONG;
+import static com.example.negotiation.base.VTAState.STUNSERVERIP;
+import static com.example.negotiation.base.VTAState.STUNSERVERPORT;
+import static com.example.negotiation.base.VTAState.TELLERID;
+import static com.example.negotiation.base.VTAState.TELLERTYPE;
+import static com.example.negotiation.base.VTAState.TURNSERVERIP;
+import static com.example.negotiation.base.VTAState.TURNSERVERPORT;
+import static com.example.negotiation.base.VTAState.VERSION_LONG;
 
 public class LoginReciverd extends Head {
 
@@ -359,12 +360,12 @@ public class LoginReciverd extends Head {
         int stunServerIp3=stunServerIp[2]& 0xFF;
         int stunServerIp4=stunServerIp[3]& 0xFF;
         short stunServerPortNum=HexUtils.bytesToIntShortBig(stunServerPort) ;
-        stunServer=String.valueOf(stunServerIp1)+"."+String.valueOf(stunServerIp2)+"."+String.valueOf(stunServerIp3)+"."+String.valueOf(stunServerIp4)+":"+String.valueOf(stunServerPortNum);
+        stunServer= String.valueOf(stunServerIp1)+"."+ String.valueOf(stunServerIp2)+"."+ String.valueOf(stunServerIp3)+"."+ String.valueOf(stunServerIp4)+":"+ String.valueOf(stunServerPortNum);
         int turnServerIp1=turnServerIp[0]& 0xFF;
         int turnServerIp2=turnServerIp[1]& 0xFF;
         int turnServerIp3=turnServerIp[2]& 0xFF;
         int turnServerIp4=turnServerIp[3]& 0xFF;
         short turnServerPortNum=HexUtils.bytesToIntShortBig(turnServerPort) ;
-        turnServer=String.valueOf(turnServerIp1)+"."+String.valueOf(turnServerIp2)+"."+String.valueOf(turnServerIp3)+"."+String.valueOf(turnServerIp4)+":"+String.valueOf(turnServerPortNum);
+        turnServer= String.valueOf(turnServerIp1)+"."+ String.valueOf(turnServerIp2)+"."+ String.valueOf(turnServerIp3)+"."+ String.valueOf(turnServerIp4)+":"+ String.valueOf(turnServerPortNum);
     }
 }

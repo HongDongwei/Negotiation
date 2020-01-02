@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,13 +17,17 @@ import android.widget.Toast;
 
 import com.example.negotiation.R;
 import com.example.negotiation.SipManager;
-import com.example.negotiation.api.StateApplication;
+import com.example.negotiation.base.APP;
 import com.csipsimple.api.SipConfigManager;
 import com.csipsimple.service.SipService;
 import com.csipsimple.utils.CustomDistribution;
 import com.csipsimple.utils.PreferencesProviderWrapper;
 import com.csipsimple.utils.PreferencesWrapper;
 import com.csipsimple.utils.backup.BackupWrapper;
+import com.example.negotiation.base.SharedPreferencesUtils;
+import com.example.negotiation.model.AddMeet;
+import com.example.negotiation.socket.manager.SessionManager;
+import com.example.negotiation.utils.HexUtils;
 import com.example.negotiation.utils.PhoneCode;
 
 import static com.csipsimple.api.SipConfigManager.STUN_SERVER;
@@ -34,6 +39,8 @@ import static com.csipsimple.api.SipManager.ACTION_SIP_REQUEST_RESTART;
 import static com.csipsimple.api.SipManager.ACTION_UI_PREFS_FAST;
 import static com.csipsimple.api.SipManager.ACTION_UI_PREFS_GLOBAL;
 import static com.csipsimple.api.SipManager.EXTRA_OUTGOING_ACTIVITY;
+import static com.example.negotiation.base.VTAState.A_VTA_LOGIN_REQ;
+import static com.example.negotiation.base.VTAState.Sc_a_VTA_Conference_Cfg;
 
 public class UserActivity extends Activity {
 
@@ -51,6 +58,11 @@ public class UserActivity extends Activity {
     private SipManager sipManager;
     PreferencesWrapper preferencesWrapper;
     private PhoneCode pcCode;
+    private byte[] addMeet;
+
+    //add 2019-12-31
+    private Button button_inConf;
+    private Button button_outConf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +78,8 @@ public class UserActivity extends Activity {
             @Override
             public void onSucess(String code) {
                 showToast(code);
+                initAdd(code);
+                SessionManager.getInstance().writeBytesToServer(addMeet);
             }
 
             @Override
@@ -73,8 +87,34 @@ public class UserActivity extends Activity {
 
             }
         });
+
+        button_inConf = findViewById(R.id.button_inConf);
+        button_inConf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //加入会议
+            }
+        });
+
+        button_outConf = findViewById(R.id.button_outConf);
+        button_outConf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //退出会议
+            }
+        });
     }
 
+    private void initAdd(String code) {
+        byte[] version = {0x01};
+        int command = 1;
+        byte[] text1 = {0x00, 0x00, 0x00, 0x00};
+        byte[] text2 = {0x00, 0x00, (byte) 0xdc, 0x20};
+        byte[] text3 = {0x00, 0x00, (byte) 0xdd, (byte) 0x80};
+        byte[] text4 = HexUtils.IntToByteBig(Sc_a_VTA_Conference_Cfg);
+        AddMeet addMeet = new AddMeet(version, command, text1, text2, text3, text4, code);
+        this.addMeet = addMeet.getByte();
+    }
 
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -85,19 +125,11 @@ public class UserActivity extends Activity {
         ivText = (ImageView) findViewById(R.id.iv_text);
         pcCode = (PhoneCode) findViewById(R.id.pc_code);
         sipManager = new SipManager(this);
-//        tvUserName = (TextView) findViewById(R.id.tv_user_name);
-//        tvSipName = (TextView) findViewById(R.id.tv_sip_name);
-//        tvLoginState = (TextView) findViewById(R.id.tv_login_state);
         ibSet = (ImageButton) findViewById(R.id.ib_set);
         hasTriedOnceActivateAcc = false;
         if (!prefProviderWrapper.getPreferenceBooleanValue(SipConfigManager.PREVENT_SCREEN_ROTATION)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         }
-        preferencesWrapper = new PreferencesWrapper(this);
-        preferencesWrapper.setPreferenceStringValue(STUN_SERVER, StateApplication.loginReciverd.getStunServer());
-        preferencesWrapper.setPreferenceStringValue(TURN_SERVER, StateApplication.loginReciverd.getTurnServer());
-        preferencesWrapper.setPreferenceStringValue(TURN_USERNAME, StateApplication.loginReciverd.getTurnUserName());
-        preferencesWrapper.setPreferenceStringValue(TURN_PASSWORD, StateApplication.loginReciverd.getTurnPwd());
     }
 
     private void initEvent() {
@@ -159,6 +191,7 @@ public class UserActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 sipManager.initDeleteAll();
+                SharedPreferencesUtils.clearAll(UserActivity.this);
                 finish();
             }
         });

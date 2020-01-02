@@ -7,12 +7,14 @@
         <item name="colorPrimaryDark">#FFFFFF</item>
         <item name="colorAccent">#FFFFFF</item>
     </style>
+
     <!-- Base application theme. -->
     <style name="MainTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#1E7AD7</item>
         <item name="colorPrimaryDark">#1E7AD7</item>
         <item name="colorAccent">#1E7AD7</item>
+
     </style>
     <style name="CallingTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->

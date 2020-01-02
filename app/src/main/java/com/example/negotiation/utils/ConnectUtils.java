@@ -9,11 +9,11 @@ import java.util.Date;
 
 public class ConnectUtils {
 
-    private static final String TAG = "HeartBeatService";
-
-    public static final int REPEAT_TIME = 5;//表示重连次数
-    public static final String HOST = "192.168.1.181";//表示IP地址
+    private static final String TAG = "LongConnectService";
+    public static final int REPEAT_TIME = 100;
+    public static String HOST = "192.168.1.181";//表示IP地址
     public static final int PORT = 12006;//表示端口号
+    public static final String DOMAIN = "192.168.1.181";
     public static final int TIMEOUT = 5;//设置连接超时时间,超过5s还没连接上便抛出异常
 
     public static final int LOGIN = 1;
@@ -33,7 +33,7 @@ public class ConnectUtils {
     }
 
     public SipProfile addAccount(SipProfile account, String accountDisplayName, String accountServer,
-                                    String accountUserName, String accountPassword) {
+                                 String accountUserName, String accountPassword) {
         Log.d(TAG, "begin of save ....");
         account.display_name = accountDisplayName;
 

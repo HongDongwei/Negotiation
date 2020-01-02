@@ -112,8 +112,8 @@ public class PreferencesWrapper {
             //mvcs.zjhzyh.cn
 
             //218.108.119.242
-            put(SipConfigManager.STUN_SERVER, "mvcs.zjhzyh.cn");
-            put(SipConfigManager.TURN_SERVER, "60.191.75.54:3478");
+            put(SipConfigManager.STUN_SERVER, "192.168.1.181");
+            put(SipConfigManager.TURN_SERVER, "192.168.1.181:3478");
 //          put(SipConfigManager.STUN_SERVER, "218.108.119.242:3478");
 //          put(SipConfigManager.TURN_SERVER, "218.108.119.242:3478");
             put(SipConfigManager.TURN_USERNAME, "ling");

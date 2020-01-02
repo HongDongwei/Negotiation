@@ -1,34 +1,33 @@
 package com.example.negotiation.model;
 
-import com.example.negotiation.api.StateApplication;
 import com.example.negotiation.utils.HexUtils;
 
-import static com.example.negotiation.api.VTAState.ALL_LONG;
-import static com.example.negotiation.api.VTAState.COMMAND_TYPE_LONG;
-import static com.example.negotiation.api.VTAState.LOGIN_LONG;
-import static com.example.negotiation.api.VTAState.MESSAGE_CATRGORY;
-import static com.example.negotiation.api.VTAState.MESSAGE_LONG;
-import static com.example.negotiation.api.VTAState.MESSAGE_RECEIVE;
-import static com.example.negotiation.api.VTAState.MESSAGE_SEND;
-import static com.example.negotiation.api.VTAState.MESSAGE_SPECIES;
-import static com.example.negotiation.api.VTAState.PROTOCOL_LONG;
-import static com.example.negotiation.api.VTAState.TELLERID;
-import static com.example.negotiation.api.VTAState.VERSION_LONG;
+import static com.example.negotiation.base.VTAState.ALL_LONG;
+import static com.example.negotiation.base.VTAState.COMMAND_TYPE_LONG;
+import static com.example.negotiation.base.VTAState.LOGIN_LONG;
+import static com.example.negotiation.base.VTAState.MESSAGE_CATRGORY;
+import static com.example.negotiation.base.VTAState.MESSAGE_LONG;
+import static com.example.negotiation.base.VTAState.MESSAGE_RECEIVE;
+import static com.example.negotiation.base.VTAState.MESSAGE_SEND;
+import static com.example.negotiation.base.VTAState.MESSAGE_SPECIES;
+import static com.example.negotiation.base.VTAState.PROTOCOL_LONG;
+import static com.example.negotiation.base.VTAState.TELLERID;
+import static com.example.negotiation.base.VTAState.VERSION_LONG;
 
 public class LogoutSend extends Head {
 
     private byte[] amsPid = new byte[4];
     private byte[] tellerId = new byte[4];
 
-    public LogoutSend(byte[] version, int command, byte[] catrgory, byte[] receive, byte[] send, byte[] species) {
+    public LogoutSend(byte[] version, int command, byte[] catrgory, byte[] receive, byte[] send, byte[] species, byte[] tellerId) {
         this.version = version;
         this.command = command;
         this.catrgory = catrgory;
         this.receive = receive;
         this.send = send;
         this.species = species;
+        this.tellerId = tellerId;
         this.amsPid = new byte[]{0, 0, 0, 1};
-        this.tellerId = StateApplication.loginReciverd.getTellerId();
         contentLenth = HexUtils.IntToByteSmall(TELLERID + TELLERID);
         loginLenth = (short) (PROTOCOL_LONG + TELLERID + TELLERID);
         byteCommand = HexUtils.IntToByteSmall(this.command);

@@ -1,5 +1,6 @@
 package com.example.negotiation.model;
 
+
 import com.example.negotiation.utils.HexUtils;
 
 public class HeartSend {

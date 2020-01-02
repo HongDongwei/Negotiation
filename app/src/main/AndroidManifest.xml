@@ -12,7 +12,7 @@
         android:xlargeScreens="true" />
 
     <application
-        android:name=".api.StateApplication"
+        android:name=".base.APP"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@drawable/icon_home"
@@ -81,7 +81,7 @@
         </activity>
 
         <service
-            android:name=".heartbeat.HeartBeatService"
+            android:name=".socket.service.LongConnectService"
             android:label="HeartBeatService" />
         <!--<service-->
         <!--android:name="com.csipsimple.service.SipService"-->

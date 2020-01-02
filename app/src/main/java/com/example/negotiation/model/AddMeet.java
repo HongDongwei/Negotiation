@@ -2,17 +2,18 @@ package com.example.negotiation.model;
 
 import com.example.negotiation.utils.HexUtils;
 
-import static com.example.negotiation.api.VTAState.ALL_LONG;
-import static com.example.negotiation.api.VTAState.COMMAND_TYPE_LONG;
-import static com.example.negotiation.api.VTAState.LOGIN_LONG;
-import static com.example.negotiation.api.VTAState.MESSAGE_CATRGORY;
-import static com.example.negotiation.api.VTAState.MESSAGE_LONG;
-import static com.example.negotiation.api.VTAState.MESSAGE_RECEIVE;
-import static com.example.negotiation.api.VTAState.MESSAGE_SEND;
-import static com.example.negotiation.api.VTAState.MESSAGE_SPECIES;
-import static com.example.negotiation.api.VTAState.PROTOCOL_LONG;
-import static com.example.negotiation.api.VTAState.STRING_LONG;
-import static com.example.negotiation.api.VTAState.VERSION_LONG;
+import static com.example.negotiation.base.VTAState.ALL_LONG;
+import static com.example.negotiation.base.VTAState.COMMAND_TYPE_LONG;
+import static com.example.negotiation.base.VTAState.LOGIN_LONG;
+import static com.example.negotiation.base.VTAState.MESSAGE_CATRGORY;
+import static com.example.negotiation.base.VTAState.MESSAGE_LONG;
+import static com.example.negotiation.base.VTAState.MESSAGE_RECEIVE;
+import static com.example.negotiation.base.VTAState.MESSAGE_SEND;
+import static com.example.negotiation.base.VTAState.MESSAGE_SPECIES;
+import static com.example.negotiation.base.VTAState.PROTOCOL_LONG;
+import static com.example.negotiation.base.VTAState.STRING_LONG;
+import static com.example.negotiation.base.VTAState.VERSION_LONG;
+import static com.example.negotiation.base.VTAState.LOGIN_LONG;
 
 /**
  * Created by Android Studio.

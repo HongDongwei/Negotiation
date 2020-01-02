@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.example.negotiation.model.LoginReciverd;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBProvider;
 import com.csipsimple.models.Filter;
@@ -19,6 +20,8 @@ import com.csipsimple.wizards.impl.Basic;
 
 import java.util.List;
 
+import static com.example.negotiation.utils.ConnectUtils.DOMAIN;
+import static com.example.negotiation.utils.ConnectUtils.HOST;
 import static com.csipsimple.api.SipConfigManager.STUN_SERVER;
 import static com.csipsimple.api.SipConfigManager.TURN_PASSWORD;
 import static com.csipsimple.api.SipConfigManager.TURN_SERVER;
@@ -26,7 +29,7 @@ import static com.csipsimple.api.SipConfigManager.TURN_USERNAME;
 import static com.csipsimple.api.SipConfigManager.VIDEO_CAPTURE_SIZE;
 
 /**
- * Des:hybirdbase - com.codvision.dld.utils.sip
+ * Des:hybirdbase - com.example.negotiation
  * 统一管理 Sip通信相关的逻辑
  *
  * @author xujichang、洪东伟
@@ -91,6 +94,13 @@ public class SipManager {
         return which;
     }
 
+    //初始化设置
+    public void initSipSet(LoginReciverd loginReciverd) {
+        preferencesWrapper.setPreferenceStringValue(STUN_SERVER, "mvcs.zjhzyh.cn");
+        preferencesWrapper.setPreferenceStringValue(TURN_SERVER, HOST + ":3478");
+        preferencesWrapper.setPreferenceStringValue(TURN_USERNAME, loginReciverd.getTurnUserName());
+        preferencesWrapper.setPreferenceStringValue(TURN_PASSWORD, loginReciverd.getTurnPwd());
+    }
 
     public void setVelue(String key, String velue) {
         preferencesWrapper.setPreferenceStringValue(key, velue);
@@ -107,7 +117,7 @@ public class SipManager {
             setAccount(displayName, true);
         } else {
             Log.i(TAG, "register: 未注册");
-            //buildAccount(displayName, userName, pwd);
+            buildAccount(displayName, userName, pwd);
         }
     }
 
@@ -217,35 +227,35 @@ public class SipManager {
         context.getContentResolver().update(ContentUris.withAppendedId(SipProfile.ACCOUNT_ID_URI_BASE, i), cv, null, null);
     }
 
-//    //注册账号
-//    public void buildAccount(String displayName, String userName, String pwd) {
-//        setWizardId("BASIC");
-//        account = SipProfile.getProfileFromDbId(context, SipProfile.INVALID_ID, DBProvider.ACCOUNT_FULL_PROJECTION);//6384
-//        PreferencesWrapper prefs = new PreferencesWrapper(context.getApplicationContext());
-//        //account = wizard.buildAccount1(account, displayName, "218.108.119.242", userName, pwd);
-//        account = wizard.buildAccount1(account, displayName, DOMAIN, userName, pwd);
-//        Log.i(TAG, "buildAccount: " + userName);
-//        account.wizard = wizardId;
-//        if (account.id == SipProfile.INVALID_ID) {
-//            // This account does not exists yet
-//            prefs.startEditing();
-//            wizard.setDefaultParams(prefs);
-//            prefs.endEditing();
-//            Uri uri = context.getContentResolver().insert(SipProfile.ACCOUNT_URI, account.getDbContentValues());
-//
-//            // After insert, add filters for this wizard
-//            account.id = ContentUris.parseId(uri);
-//            List<Filter> filters = wizard.getDefaultFilters(account);
-//            if (filters != null) {
-//                for (Filter filter : filters) {
-//                    // Ensure the correct id if not done by the wizard
-//                    filter.account = (int) account.id;
-//                    context.getContentResolver().insert(com.csipsimple.api.SipManager.FILTER_URI, filter.getDbContentValues());
-//                }
-//            }
-//            // Check if we have to restart
-//        }
-//    }
+    //注册账号
+    public void buildAccount(String displayName, String userName, String pwd) {
+        setWizardId("BASIC");
+        account = SipProfile.getProfileFromDbId(context, SipProfile.INVALID_ID, DBProvider.ACCOUNT_FULL_PROJECTION);//6384
+        PreferencesWrapper prefs = new PreferencesWrapper(context.getApplicationContext());
+        //account = wizard.buildAccount1(account, displayName, "218.108.119.242", userName, pwd);
+        account = wizard.buildAccount1(account, displayName, DOMAIN, userName, pwd);
+        Log.i(TAG, "buildAccount: " + userName);
+        account.wizard = wizardId;
+        if (account.id == SipProfile.INVALID_ID) {
+            // This account does not exists yet
+            prefs.startEditing();
+            wizard.setDefaultParams(prefs);
+            prefs.endEditing();
+            Uri uri = context.getContentResolver().insert(SipProfile.ACCOUNT_URI, account.getDbContentValues());
+
+            // After insert, add filters for this wizard
+            account.id = ContentUris.parseId(uri);
+            List<Filter> filters = wizard.getDefaultFilters(account);
+            if (filters != null) {
+                for (Filter filter : filters) {
+                    // Ensure the correct id if not done by the wizard
+                    filter.account = (int) account.id;
+                    context.getContentResolver().insert(com.csipsimple.api.SipManager.FILTER_URI, filter.getDbContentValues());
+                }
+            }
+            // Check if we have to restart
+        }
+    }
 
     //
     private boolean setWizardId(String wId) {

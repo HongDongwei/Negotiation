@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -54,7 +54,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_top"
-        android:layout_margin="50dp" />
+        android:layout_margin="50dp" >
+
+    </com.example.negotiation.utils.PhoneCode>
+
+    <Button
+        android:id="@+id/button_inConf"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="加入会议" />
+
+    <Button
+        android:id="@+id/button_outConf"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="退出会议" />
+
     <!--<RelativeLayout-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
@@ -133,4 +148,4 @@
     <!--android:textSize="17sp"-->
     <!--android:text="张三" />-->
     <!--</RelativeLayout>-->
-</RelativeLayout>
+</LinearLayout>
