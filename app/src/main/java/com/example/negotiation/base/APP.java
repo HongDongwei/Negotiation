@@ -13,6 +13,9 @@ import com.example.negotiation.ui.UserActivity;
 
 import org.apache.mina.core.session.IoSession;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class APP extends Application {
     public static final String TAG = "APP";
 
@@ -26,6 +29,7 @@ public class APP extends Application {
     public static String userConfCode;
     public static byte[] tellerId;
     private static Context context;
+    public static Map<String, targetInfo> targetInfoList = new HashMap<>();
 
     @Override
     public void onCreate() {
@@ -34,6 +38,7 @@ public class APP extends Application {
         ClientConnectManager.getInstance().connect(this);
         startSipService();
         doStartService();
+        targetInfoList.clear();
     }
     /**
      * 绑定服务

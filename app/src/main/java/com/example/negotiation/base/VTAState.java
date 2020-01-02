@@ -144,6 +144,10 @@ public class VTAState {
     //JsmpegServerPort长度
     public static final int JSMPEGSERVERPORT = 2;
 
+    /* add 2020-01-02, 消息字段类型 */
+    public static final int BYTE = 1;
+    public static final int WORD = 2;
+    public static final int DWORD = 4;
 
     //登录类别码
     public static final byte[] LOGIN_SPECIES = {2, 0, 16, 1};

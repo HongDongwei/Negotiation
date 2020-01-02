@@ -9,6 +9,7 @@ import com.example.negotiation.base.APP;
 import com.example.negotiation.base.Const;
 import com.example.negotiation.base.SharedPreferencesUtils;
 import com.example.negotiation.model.LoginReciverd;
+import com.example.negotiation.model.QueryReciverd;
 import com.example.negotiation.model.SipStatusSend;
 import com.example.negotiation.socket.manager.ClientConnectManager;
 import com.example.negotiation.socket.manager.SessionManager;
@@ -60,32 +61,35 @@ public class HeartBeatHandler extends IoHandlerAdapter {
         String result = URLDecoder.decode(message.toString(), "UTF-8");
         byte[] data = HexUtils.hexStringToBytes(result);
         if (data != null) {
-            byte[] species = new byte[4];
-            byte[] byteloginResult = new byte[4];
+            byte[] species = new byte[4]; //消息种别码
             System.arraycopy(data, 19, species, 0, LOGINRESULT);
             if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(A_VTA_LOGIN_RSP))) {
+                byte[] byteloginResult = new byte[4];
                 System.arraycopy(data, 27, byteloginResult, 0, LOGINRESULT);
                 if (HexUtils.bytesToIntBig(byteloginResult) == 0) {
                     //登录成功
                     Log.i(TAG, "SIP注册了" + i++ + "次");
-                    APP.tellerId = new LoginReciverd(data).getTellerId();
+                    LoginReciverd loginParse = new LoginReciverd(data);
+                    APP.tellerId = loginParse.getTellerId();
                     if (!(boolean) SharedPreferencesUtils.getParam(mContext, Const.SharedPreferencesConst.REGISTER)) {
                         android.util.Log.i(TAG, "messageReceived: " + "true");
                         SharedPreferencesUtils.setParam(mContext, Const.SharedPreferencesConst.REGISTER, true);
                         SharedPreferencesUtils.setParam(mContext, Const.SharedPreferencesConst.USER_NAME, APP.userName);
                         SharedPreferencesUtils.setParam(mContext, Const.SharedPreferencesConst.USER_PWD, APP.userPwd);
                         SharedPreferencesUtils.setParam(mContext, Const.SharedPreferencesConst.USER_CONF, APP.userConfCode);
-                        sipManager.register((String) SharedPreferencesUtils.getParam(mContext, Const.SharedPreferencesConst.USER_NAME), String.valueOf(new LoginReciverd(data).getTellerIdNum()), String.valueOf(new LoginReciverd(data).getTellerIdNum()));
-                        sipManager.initSipSet(new LoginReciverd(data));
+                        sipManager.register((String) SharedPreferencesUtils.getParam(mContext, Const.SharedPreferencesConst.USER_NAME), String.valueOf(loginParse.getTellerIdNum()), String.valueOf(loginParse.getTellerIdNum()));
+                        sipManager.initSipSet(loginParse);
                         ClientConnectManager.getInstance().loginSucess("登陆成功");
                     }
                 } else {
                     Log.i(TAG, "messageReceived: 该账号没有通话权限");
                     ClientConnectManager.getInstance().ToastErr("该账号没有通话权限");
                 }
-            } else if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(A_VTA_LOGOUT_RSP))) {
+            }
+            else if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(A_VTA_LOGOUT_RSP))) {
                 //登出指令
-            } else if (HexUtils.byteEquals(species, HexUtils.IntToByteSmall(Sc_a_VTA_SipStatus_Rsp))) {
+            }
+            else if (HexUtils.byteEquals(species, HexUtils.IntToByteSmall(Sc_a_VTA_SipStatus_Rsp))) {
                 //sip状态
                 byte[] flag = new byte[4];
                 byte[] status = new byte[4];
@@ -132,9 +136,11 @@ public class HeartBeatHandler extends IoHandlerAdapter {
 
                     }
                 }
-            } else if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(Sc_a_VTA_Msg_Rsp))) {
+            }
+            else if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(Sc_a_VTA_Msg_Rsp))) {
                 //通话过程中的消息
-            } else if (HexUtils.byteEquals(species, HexUtils.IntToByteSmall(Sc_a_VTA_Call_Rsp))) {
+            }
+            else if (HexUtils.byteEquals(species, HexUtils.IntToByteSmall(Sc_a_VTA_Call_Rsp))) {
                 //呼叫人信息
                 byte[] lenB = new byte[4];
                 System.arraycopy(data, 27, lenB, 0, 4);
@@ -165,11 +171,11 @@ public class HeartBeatHandler extends IoHandlerAdapter {
                     }
                 }.start();
 
-            } else if (HexUtils.byteEquals(species, HexUtils.IntToByteSmall(Sc_a_VTA_SipStatus_Rsp))) {
-                //sip状态
-            } else if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(Sc_a_VTA_Query_Rsp))) {
+            }
+            else if (HexUtils.byteEquals(species, HexUtils.IntToByteBig(Sc_a_VTA_Query_Rsp))) {
                 //更新在线成员列表
-
+                QueryReciverd queryParse = new QueryReciverd(data);
+                APP.targetInfoList = queryParse.targetInfoList;
             }
         }
 
