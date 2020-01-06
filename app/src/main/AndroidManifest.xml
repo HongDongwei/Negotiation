@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.negotiation">
 
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -18,12 +17,14 @@
         android:icon="@drawable/icon_home"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/MainTheme"
         tools:ignore="HardcodedDebugMode"
         tools:replace="android:icon">
+        <activity android:name=".ui.SipHome"
+            android:theme="@style/MainTheme"></activity>
         <activity
             android:name=".ui.LeadActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/MainTheme">
             <intent-filter android:priority="10">
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,65 +34,15 @@
         <activity
             android:name=".ui.UserActivity"
             android:launchMode="singleTask"
-            android:theme="@style/MainTheme"
-            android:permission="android.permission.CONFIGURE_SIP"
-            android:uiOptions="splitActionBarWhenNarrow">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-            <intent-filter android:priority="10">
-                <action android:name="com.csipsimple.phone.action.DIALER" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter android:priority="10">
-                <action android:name="android.intent.action.DIAL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="sip" />
-                <data android:scheme="csip" />
-            </intent-filter>
-            <intent-filter android:priority="10">
-                <action android:name="com.csipsimple.phone.action.CALLLOG" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter android:priority="10">
-                <action android:name="com.csipsimple.phone.action.FAVORITES" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter android:priority="10">
-                <action android:name="com.csipsimple.phone.action.MESSAGES" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/MainTheme"></activity>
         <activity
             android:name=".ui.MainActivity"
             android:permission="android.permission.CONFIGURE_SIP"
-            android:theme="@style/MainTheme">
-
-        </activity>
+            android:theme="@style/MainTheme"></activity>
 
         <service
             android:name=".socket.service.LongConnectService"
             android:label="HeartBeatService" />
-        <!--<service-->
-        <!--android:name="com.csipsimple.service.SipService"-->
-        <!--android:exported="true"-->
-        <!--android:permission="android.permission.CONFIGURE_SIP"-->
-        <!--android:process=":sipStack">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.csipsimple.service.SipService" />-->
-        <!--<action android:name="com.csipsimple.service.SipConfiguration" />-->
-        <!--</intent-filter>-->
-        <!--</service>-->
     </application>
+
 </manifest>

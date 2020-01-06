@@ -271,7 +271,7 @@ public class SipService extends Service {
 
         }
 
-        private BroadcastReceiver mPlaceCallResultReceiver = new BroadcastReceiver() {
+        public BroadcastReceiver mPlaceCallResultReceiver = new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, final Intent intent) {

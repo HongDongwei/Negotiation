@@ -3,10 +3,16 @@ package com.example.negotiation.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +21,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.csipsimple.api.ISipService;
+import com.csipsimple.api.SipCallSession;
+import com.csipsimple.api.SipProfile;
+
+import com.csipsimple.ui.incall.InCallActivity;
+import com.csipsimple.utils.CallHandlerPlugin;
+import com.csipsimple.utils.Log;
 import com.example.negotiation.R;
 import com.example.negotiation.SipManager;
 import com.example.negotiation.base.APP;
@@ -25,10 +38,13 @@ import com.csipsimple.utils.PreferencesProviderWrapper;
 import com.csipsimple.utils.PreferencesWrapper;
 import com.csipsimple.utils.backup.BackupWrapper;
 import com.example.negotiation.base.SharedPreferencesUtils;
+import com.example.negotiation.base.targetInfo;
 import com.example.negotiation.model.AddMeet;
 import com.example.negotiation.socket.manager.SessionManager;
 import com.example.negotiation.utils.HexUtils;
 import com.example.negotiation.utils.PhoneCode;
+
+import java.util.Map;
 
 import static com.csipsimple.api.SipConfigManager.STUN_SERVER;
 import static com.csipsimple.api.SipConfigManager.TURN_PASSWORD;
@@ -63,6 +79,31 @@ public class UserActivity extends Activity {
     //add 2019-12-31
     private Button button_inConf;
     private Button button_outConf;
+    private ISipService service;
+    private boolean serviceConnected = false;
+    private SipCallSession[] callsInfo = null;
+    private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName arg0, IBinder arg1) {
+            service = ISipService.Stub.asInterface(arg1);
+            try {
+                // Log.d(THIS_FILE,
+                // "Service started get real call info "+callInfo.getCallId());
+                callsInfo = service.getCalls();
+                serviceConnected = true;
+            } catch (RemoteException e) {
+
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            serviceConnected = false;
+            callsInfo = null;
+        }
+    };
+    private String THIS_FILE="UserActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +113,7 @@ public class UserActivity extends Activity {
         setContentView(R.layout.activity_user);
         initVisible();
         initEvent();
+        bindService(new Intent(this, SipService.class), connection, Context.BIND_AUTO_CREATE);
         sendBroadcast(new Intent(ACTION_SIP_REQUEST_RESTART));
 
         pcCode.setOnInputListener(new PhoneCode.OnInputListener() {
@@ -92,7 +134,8 @@ public class UserActivity extends Activity {
         button_inConf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //加入会议
+                startActivity(new Intent(UserActivity.this,SipHome.class));
+               // call();
             }
         });
 
@@ -103,6 +146,25 @@ public class UserActivity extends Activity {
                 //退出会议
             }
         });
+    }
+
+    private void call() {
+        if (service != null) {
+            String callee = "";
+            long accountId = 0;
+            for (Map.Entry<String, targetInfo> entry : APP.targetInfoList.entrySet()) {
+                    callee = entry.getValue().getLoginName();
+                    accountId = entry.getValue().getTargetID();
+                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
+            if (accountId != SipProfile.INVALID_ID) {
+                try {
+                    service.makeCall(callee, (int) accountId);
+                } catch (RemoteException e) {
+                    // TODO : toaster
+                }
+            }
+        }
     }
 
     private void initAdd(String code) {
@@ -191,7 +253,7 @@ public class UserActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 sipManager.initDeleteAll();
-                SharedPreferencesUtils.clearAll(UserActivity.this);
+                SharedPreferencesUtils.clear(UserActivity.this);
                 finish();
             }
         });

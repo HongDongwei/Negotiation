@@ -161,6 +161,8 @@ public class MainActivity extends Activity {
         });
 
         if ((boolean) SharedPreferencesUtils.getParam(this, Const.SharedPreferencesConst.REGISTER)) {
+            initLogin( (String) SharedPreferencesUtils.getParam(this, Const.SharedPreferencesConst.USER_NAME),  (String) SharedPreferencesUtils.getParam(this, Const.SharedPreferencesConst.USER_PWD),   (String) SharedPreferencesUtils.getParam(this, Const.SharedPreferencesConst.USER_CONF));
+            SessionManager.getInstance().writeBytesToServer(loginbytes);
             startActivity(new Intent(MainActivity.this, UserActivity.class));
         }
     }
