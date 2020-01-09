@@ -263,6 +263,14 @@ public class pjsua_call_info {
     return pjsuaJNI.pjsua_call_info_vtc_id_get(swigCPtr, this);
   }
 
+  public void setutype(long value) {
+	 pjsuaJNI.pjsua_call_info_utype_set(swigCPtr, this, value);
+   }
+  
+   public long getutype() {
+	 return pjsuaJNI.pjsua_call_info_utype_get(swigCPtr, this);
+   }
+
   public pjsua_call_info() {
     this(pjsuaJNI.new_pjsua_call_info(), true);
   }

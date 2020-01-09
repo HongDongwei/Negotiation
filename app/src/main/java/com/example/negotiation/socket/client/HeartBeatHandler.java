@@ -184,7 +184,7 @@ public class HeartBeatHandler extends IoHandlerAdapter {
 
     @Override
     public void messageSent(IoSession session, Object message) throws Exception {
-        Log.i(TAG, ConnectUtils.stringNowTime() + " : 客户端调用messageSent");
+        //Log.i(TAG, ConnectUtils.stringNowTime() + " : 客户端调用messageSent");
         //        session.close(true);//加上这句话实现短连接的效果，向客户端成功发送数据后断开连接
     }
 

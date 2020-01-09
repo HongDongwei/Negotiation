@@ -1236,10 +1236,16 @@ public class PjSipService {
             pjsua_msg_data msgData = new pjsua_msg_data();
             int pjsuaAccId = toCall.getPjsipAccountId();
 
+            Log.d(THIS_FILE, "accountId: "+ accountId+", callee: "+callee+", uri: "+uri.getPtr()+", pjsuaAccId: "+pjsuaAccId );
             // Call settings to add video
             pjsua.call_setting_default(cs);
             cs.setAud_cnt(1);
-            cs.setVid_cnt(0);
+            cs.setVid_cnt(1);
+            cs.setVtc_type(3); //呼叫对象的类型
+            cs.setVtc_id(1694);//呼叫对象的id, 和callee一样
+
+            cs.seUtype(1); //本账号类型
+            cs.setUid(1600); //本账号id
             if (b != null && b.getBoolean(SipCallSession.OPT_CALL_VIDEO, false)) {
                 cs.setVid_cnt(1);
             }

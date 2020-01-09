@@ -106,8 +106,9 @@ public final class PjSipCalls {
             int vidStreamIdx = pjsua.call_get_vid_stream_idx(session.getCallId());
             if(vidStreamIdx >= 0) {
                 //todo
-                 int hasVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_ENCODING_DECODING);
-                 session.setMediaHasVideo((hasVid == pjsuaConstants.PJ_TRUE));
+                 int hasCapVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_ENCODING);
+                 int hasRendVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_DECODING);
+                 session.setMediaHasVideo(((hasCapVid | hasRendVid) == pjsuaConstants.PJ_TRUE));
             }
             
 

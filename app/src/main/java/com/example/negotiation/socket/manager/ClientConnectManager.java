@@ -83,6 +83,7 @@ public class ClientConnectManager {
             public void subscribe(@NonNull ObservableEmitter<Object> e) throws Exception {
                 //HOST = parseHostGetIPAddress(ConnectUtils.DOMAIN);
                 //preferencesWrapper.setPreferenceStringValue(TURN_SERVER, HOST + ":3478");
+                Log.i(TAG, "ConnectUtils.HOST in connect: " + ConnectUtils.HOST);
                 ConnectUtils.HOST = "192.168.1.181";
                 NioSocketConnector mSocketConnector = new NioSocketConnector();
                 //设置协议封装解析处理
@@ -212,6 +213,7 @@ public class ClientConnectManager {
                     try {
                         //HOST = parseHostGetIPAddress(ConnectUtils.DOMAIN);
                         //preferencesWrapper.setPreferenceStringValue(TURN_SERVER, HOST + ":3478");
+                        Log.i(TAG, "ConnectUtils.HOST in rePeatConnect: " + ConnectUtils.HOST);
                         ConnectUtils.HOST = "192.168.1.181";
                         count++;
                         NioSocketConnector mSocketConnector = new NioSocketConnector();

@@ -97,7 +97,7 @@ public class SipService extends Service {
     private static final String THIS_FILE = "SIP SRV";
 
     private SipWakeLock sipWakeLock;
-    private boolean autoAcceptCurrent = false;
+    private boolean autoAcceptCurrent = true;
     public boolean supportMultipleCalls = false;
 
     // For video testing -- TODO : remove
@@ -1780,7 +1780,7 @@ public class SipService extends Service {
 
         if (autoAcceptCurrent) {
             Log.d(THIS_FILE, "I should auto answer this one !!! ");
-            autoAcceptCurrent = false;
+            //autoAcceptCurrent = false;
             return 200;
         }
 

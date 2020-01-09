@@ -539,6 +539,8 @@ public class InCallActivity extends AppCompatActivity implements IOnCallActionTr
                         }
                         break;
                     case SipCallSession.InvState.CONFIRMED:
+                        //send callevent
+
                         break;
                     case SipCallSession.InvState.NULL:
                     case SipCallSession.InvState.DISCONNECTED:

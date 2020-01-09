@@ -23,6 +23,7 @@ package com.csipsimple.service.impl;
 
 import com.csipsimple.api.SipCallSession;
 import com.csipsimple.api.SipProfile;
+import com.csipsimple.utils.Log;
 
 public class SipCallSessionImpl extends SipCallSession {
 

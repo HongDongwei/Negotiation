@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+import com.csipsimple.utils.Log;
 
 /**
  * Represents state of a call session<br/>

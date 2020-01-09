@@ -124,27 +124,27 @@ public class UAStateReceiver extends Callback {
 
         // Check if we have not already an ongoing call
         boolean hasOngoingSipCall = false;
-        if (pjService != null && pjService.service != null) {
-            SipCallSessionImpl[] calls = getCalls();
-            if (calls != null) {
-                for (SipCallSessionImpl existingCall : calls) {
-                    if (!existingCall.isAfterEnded() && existingCall.getCallId() != callId) {
-                        if (!pjService.service.supportMultipleCalls) {
-                            Log.e(THIS_FILE,
-                                    "Settings to not support two call at the same time !!!");
-                            // If there is an ongoing call and we do not support
-                            // multiple calls
-                            // Send busy here
-                            pjsua.call_hangup(callId, StatusCode.BUSY_HERE, null, null);
-                            unlockCpu();
-                            return;
-                        } else {
-                            hasOngoingSipCall = true;
-                        }
-                    }
-                }
-            }
-        }
+//        if (pjService != null && pjService.service != null) {
+//            SipCallSessionImpl[] calls = getCalls();
+//            if (calls != null) {
+//                for (SipCallSessionImpl existingCall : calls) {
+//                    if (!existingCall.isAfterEnded() && existingCall.getCallId() != callId) {
+//                        if (!pjService.service.supportMultipleCalls) {
+//                            Log.e(THIS_FILE,
+//                                    "Settings to not support two call at the same time !!!");
+//                            // If there is an ongoing call and we do not support
+//                            // multiple calls
+//                            // Send busy here
+//                            pjsua.call_hangup(callId, StatusCode.BUSY_HERE, null, null);
+//                            unlockCpu();
+//                            return;
+//                        } else {
+//                            hasOngoingSipCall = true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         try {
             SipCallSessionImpl callInfo = updateCallInfoFromStack(callId, null);
