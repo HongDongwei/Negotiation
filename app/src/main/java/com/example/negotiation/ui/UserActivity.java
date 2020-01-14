@@ -42,6 +42,7 @@ import com.example.negotiation.base.targetInfo;
 import com.example.negotiation.model.AddMeet;
 import com.example.negotiation.socket.manager.SessionManager;
 import com.example.negotiation.utils.HexUtils;
+import com.example.negotiation.utils.HttpUtils;
 import com.example.negotiation.utils.PhoneCode;
 
 import java.util.Map;
@@ -103,7 +104,7 @@ public class UserActivity extends Activity {
             callsInfo = null;
         }
     };
-    private String THIS_FILE="UserActivity";
+    private String THIS_FILE = "UserActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,8 +135,8 @@ public class UserActivity extends Activity {
         button_inConf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserActivity.this,SipHome.class));
-               // call();
+                startActivity(new Intent(UserActivity.this, SipHome.class));
+                // call();
             }
         });
 
@@ -144,6 +145,7 @@ public class UserActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //退出会议
+                showToast(HttpUtils.getIPAddress(UserActivity.this));
             }
         });
     }
@@ -153,8 +155,8 @@ public class UserActivity extends Activity {
             String callee = "";
             long accountId = 0;
             for (Map.Entry<String, targetInfo> entry : APP.targetInfoList.entrySet()) {
-                    callee = entry.getValue().getLoginName();
-                    accountId = entry.getValue().getTargetID();
+                callee = entry.getValue().getLoginName();
+                accountId = entry.getValue().getTargetID();
                 System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
             if (accountId != SipProfile.INVALID_ID) {
