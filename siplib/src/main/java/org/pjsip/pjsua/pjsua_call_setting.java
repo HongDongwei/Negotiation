@@ -79,8 +79,8 @@ public class pjsua_call_setting {
 	  pjsuaJNI.pjsua_call_setting_vtc_id_set(swigCPtr, this, value);
   }
   
-  public long getVtc_id() {
-	return pjsuaJNI.pjsua_call_setting_vtc_id_get(swigCPtr, this);
+  public int getVtc_id() {
+    return pjsuaJNI.pjsua_call_setting_vtc_id_get(swigCPtr, this);
   }
 
   public void seUtype(long value) {
@@ -92,11 +92,20 @@ public class pjsua_call_setting {
   }
 
   public void setUid(int value) {
-	  pjsuaJNI.pjsua_call_setting_uid_set(swigCPtr, this, value);
+    pjsuaJNI.pjsua_call_setting_uid_set(swigCPtr, this, value);
   }
   
-  public long getUid() {
-	return pjsuaJNI.pjsua_call_setting_uid_get(swigCPtr, this);
+  public int getUid() {
+    return pjsuaJNI.pjsua_call_setting_uid_get(swigCPtr, this);
+  }
+
+  public void setConfcode(pj_str_t value) {
+    pjsuaJNI.pjsua_call_setting_confcode_set(swigCPtr, this, pj_str_t.getCPtr(value), value);
+  }
+
+  public pj_str_t getConfcode() {
+    long cPtr = pjsuaJNI.pjsua_call_setting_confcode_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new pj_str_t(cPtr, false);
   }
 
   public pjsua_call_setting() {

@@ -463,11 +463,13 @@ public class pjsuaJNI {
   public final static native void pjsua_call_setting_vtc_type_set(long jarg1, pjsua_call_setting jarg1_, long jarg2);
   public final static native long pjsua_call_setting_vtc_type_get(long jarg1, pjsua_call_setting jarg1_);
   public final static native void pjsua_call_setting_vtc_id_set(long jarg1, pjsua_call_setting jarg1_, int jarg2);
-  public final static native long pjsua_call_setting_vtc_id_get(long jarg1, pjsua_call_setting jarg1_);
+  public final static native int pjsua_call_setting_vtc_id_get(long jarg1, pjsua_call_setting jarg1_);
   public final static native void pjsua_call_setting_utype_set(long jarg1, pjsua_call_setting jarg1_, long jarg2);
   public final static native long pjsua_call_setting_utype_get(long jarg1, pjsua_call_setting jarg1_);
   public final static native void pjsua_call_setting_uid_set(long jarg1, pjsua_call_setting jarg1_, int jarg2);
-  public final static native long pjsua_call_setting_uid_get(long jarg1, pjsua_call_setting jarg1_);
+  public final static native int pjsua_call_setting_uid_get(long jarg1, pjsua_call_setting jarg1_);
+  public final static native void pjsua_call_setting_confcode_set(long jarg1, pjsua_call_setting jarg1_, long jarg2, pj_str_t jarg2_);
+  public final static native long pjsua_call_setting_confcode_get(long jarg1, pjsua_call_setting jarg1_);
   public final static native long new_pjsua_call_setting();
   public final static native void delete_pjsua_call_setting(long jarg1);
   public final static native void pjsua_callback_on_call_state_set(long jarg1, pjsua_callback jarg1_, long jarg2);

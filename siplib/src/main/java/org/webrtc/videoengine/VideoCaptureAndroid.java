@@ -206,9 +206,9 @@ public class VideoCaptureAndroid implements PreviewCallback, Callback {
             // If StartCapture has been called but not StopCapture
             // Call the C++ layer with the captured frame
             if (data.length == expectedFrameSize) {
-                if (SIPConstant.cameraFace.equals("back")) {
-                    data = rotateYUV420Degree180(data, mCaptureWidth, mCaptureHeight);
-                }
+               // if (SIPConstant.cameraFace.equals("back")) {
+                 //   data = rotateYUV420Degree180(data, mCaptureWidth, mCaptureHeight);
+              //  }
                 //视频上传
                 ProvideCameraFrame(data, expectedFrameSize, context);
 

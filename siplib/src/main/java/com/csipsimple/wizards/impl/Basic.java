@@ -143,7 +143,6 @@ public class Basic extends BaseImplementation {
         account.reg_uri = regUri;
         account.proxies = new String[]{regUri};
 
-
         account.realm = "*";
         account.username = accountUserName;
         account.data = accountPassword;

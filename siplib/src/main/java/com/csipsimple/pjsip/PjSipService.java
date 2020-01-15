@@ -1243,6 +1243,8 @@ public class PjSipService {
             cs.setVid_cnt(1);
             cs.setVtc_type(3); //呼叫对象的类型
             cs.setVtc_id(1694);//呼叫对象的id, 和callee一样
+            pj_str_t conf = new pj_str_t(); conf.setPtr("123"); conf.setSlen(3);
+            cs.setConfcode(conf);
 
             cs.seUtype(1); //本账号类型
             cs.setUid(1600); //本账号id

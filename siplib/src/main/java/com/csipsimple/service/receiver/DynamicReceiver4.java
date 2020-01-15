@@ -123,6 +123,7 @@ public class DynamicReceiver4 extends BroadcastReceiver {
             // Should that be threaded?
             if (accountId != SipProfile.INVALID_ID) {
                 final SipProfile account = service.getAccount(accountId);
+                Log.d(THIS_FILE, "proxies: " + account.getProxyAddress());
                 if (account != null) {
                     Log.d(THIS_FILE, "Enqueue set account registration");
                     service.setAccountRegistration(account, account.active ? 1 : 0, true);

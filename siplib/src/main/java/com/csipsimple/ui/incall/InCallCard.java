@@ -198,17 +198,19 @@ public class InCallCard extends FrameLayout implements OnClickListener {
         cachedVideo = callInfo.mediaHasVideo();
         cachedZrtpActive = callInfo.getHasZrtp();
         cachedZrtpVerified = callInfo.isZrtpSASVerified();
-
+        photo.setVisibility(View.GONE);
         // VIDEO STUFF -- EXPERIMENTAL
         if (canVideo) {
+
             if (callInfo.getCallId() >= 0 && cachedVideo) {
                 if (renderView == null) {
                     renderView = ViERenderer.CreateRenderer(getContext(), true);
-                    photo.setVisibility(View.GONE);
+                    //photo.setVisibility(View.GONE);
                     RelativeLayout container = (RelativeLayout) findViewById(R.id.call_card_container);
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                             RelativeLayout.LayoutParams.MATCH_PARENT,
                             RelativeLayout.LayoutParams.MATCH_PARENT);
+                    //RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(512,512);
                     lp.addRule(RelativeLayout.ALIGN_LEFT, RelativeLayout.TRUE);
                     lp.addRule(RelativeLayout.ALIGN_RIGHT, RelativeLayout.TRUE);
                     lp.addRule(RelativeLayout.ALIGN_TOP, RelativeLayout.TRUE);
@@ -228,11 +230,12 @@ public class InCallCard extends FrameLayout implements OnClickListener {
             } else {
                 if (renderView != null) {
                     renderView.setVisibility(View.GONE);
-                    photo.setVisibility(View.VISIBLE);
+                    //photo.setVisibility(View.VISIBLE);
                 }
                 hasVideo = false;
             }
         }
+
         if (onTriggerListener != null) {
             onTriggerListener.onDisplayVideo(hasVideo && canVideo);
         }
