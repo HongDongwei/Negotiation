@@ -71,7 +71,7 @@ public class HeartBeatHandler extends IoHandlerAdapter {
                     Log.i(TAG, "SIP注册了" + i++ + "次");
                     LoginReciverd loginParse = new LoginReciverd(data);
                     APP.tellerId = loginParse.getTellerId();
-                    if (!(boolean) SharedPreferencesUtils.getParam(mContext, Const.SharedPreferencesConst.REGISTER)) {
+               //     if (!(boolean) SharedPreferencesUtils.getParam(mContext, Const.SharedPreferencesConst.REGISTER)) {
                         android.util.Log.i(TAG, "messageReceived: " + "true");
                         SharedPreferencesUtils.setParam(mContext, Const.SharedPreferencesConst.REGISTER, true);
                         SharedPreferencesUtils.setParam(mContext, Const.SharedPreferencesConst.USER_NAME, APP.userName);
@@ -80,7 +80,7 @@ public class HeartBeatHandler extends IoHandlerAdapter {
                         sipManager.register((String) SharedPreferencesUtils.getParam(mContext, Const.SharedPreferencesConst.USER_NAME), String.valueOf(loginParse.getTellerIdNum()), String.valueOf(loginParse.getTellerIdNum()));
                         sipManager.initSipSet(loginParse);
                         ClientConnectManager.getInstance().loginSucess("登陆成功");
-                    }
+                   // }
                 } else {
                     Log.i(TAG, "messageReceived: 该账号没有通话权限");
                     ClientConnectManager.getInstance().ToastErr("该账号没有通话权限");

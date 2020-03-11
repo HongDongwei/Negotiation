@@ -91,10 +91,10 @@ public class LoginReciverd extends Head {
     private byte[] byteTurnPwd;
     //TurnPwd长度
     private byte[] turnPwdLenth = new byte[1];
-    //JsmpegServerIp
-    private byte[] jsmpegServerIp = new byte[4];
-    //JsmpegServerPort
-    private byte[] jsmpegServerPort = new byte[2];
+//    //JsmpegServerIp
+//    private byte[] jsmpegServerIp = new byte[4];
+//    //JsmpegServerPort
+//    private byte[] jsmpegServerPort = new byte[2];
 
     public int getLoginResult() {
         return loginResult;
@@ -272,21 +272,21 @@ public class LoginReciverd extends Head {
         this.turnPwdLenth = turnPwdLenth;
     }
 
-    public byte[] getJsmpegServerIp() {
-        return jsmpegServerIp;
-    }
-
-    public void setJsmpegServerIp(byte[] jsmpegServerIp) {
-        this.jsmpegServerIp = jsmpegServerIp;
-    }
-
-    public byte[] getJsmpegServerPort() {
-        return jsmpegServerPort;
-    }
-
-    public void setJsmpegServerPort(byte[] jsmpegServerPort) {
-        this.jsmpegServerPort = jsmpegServerPort;
-    }
+//    public byte[] getJsmpegServerIp() {
+//        return jsmpegServerIp;
+//    }
+//
+//    public void setJsmpegServerIp(byte[] jsmpegServerIp) {
+//        this.jsmpegServerIp = jsmpegServerIp;
+//    }
+//
+//    public byte[] getJsmpegServerPort() {
+//        return jsmpegServerPort;
+//    }
+//
+//    public void setJsmpegServerPort(byte[] jsmpegServerPort) {
+//        this.jsmpegServerPort = jsmpegServerPort;
+//    }
 
 
     public LoginReciverd(byte[] messge) {
@@ -343,9 +343,9 @@ public class LoginReciverd extends Head {
         //TurnPwd
         System.arraycopy(messge, VERSION_LONG + COMMAND_TYPE_LONG + ALL_LONG + MESSAGE_CATRGORY + MESSAGE_RECEIVE + MESSAGE_SEND + MESSAGE_SPECIES + MESSAGE_LONG + LOGINRESULT + TELLERID + TELLERTYPE + IDENTIFICATION + STUNSERVERIP + STUNSERVERPORT + STRING_LONG + stunUserNameLenth[0] + STRING_LONG + stunPwdLenth[0] + TURNSERVERIP + TURNSERVERPORT + STRING_LONG + turnUserNameLenth[0] + STRING_LONG, byteTurnPwd, 0, turnPwdLenth[0]);
         //JsmpegServerIp
-        System.arraycopy(messge, VERSION_LONG + COMMAND_TYPE_LONG + ALL_LONG + MESSAGE_CATRGORY + MESSAGE_RECEIVE + MESSAGE_SEND + MESSAGE_SPECIES + MESSAGE_LONG + LOGINRESULT + TELLERID + TELLERTYPE + IDENTIFICATION + STUNSERVERIP + STUNSERVERPORT + STRING_LONG + stunUserNameLenth[0] + STRING_LONG + stunPwdLenth[0] + TURNSERVERIP + TURNSERVERPORT + STRING_LONG + turnUserNameLenth[0] + STRING_LONG + turnPwdLenth[0], jsmpegServerIp, 0, JSMPEGSERVERIP);
+     //   System.arraycopy(messge, VERSION_LONG + COMMAND_TYPE_LONG + ALL_LONG + MESSAGE_CATRGORY + MESSAGE_RECEIVE + MESSAGE_SEND + MESSAGE_SPECIES + MESSAGE_LONG + LOGINRESULT + TELLERID + TELLERTYPE + IDENTIFICATION + STUNSERVERIP + STUNSERVERPORT + STRING_LONG + stunUserNameLenth[0] + STRING_LONG + stunPwdLenth[0] + TURNSERVERIP + TURNSERVERPORT + STRING_LONG + turnUserNameLenth[0] + STRING_LONG + turnPwdLenth[0], jsmpegServerIp, 0, JSMPEGSERVERIP);
         //jsmpegServerPort
-        System.arraycopy(messge, VERSION_LONG + COMMAND_TYPE_LONG + ALL_LONG + MESSAGE_CATRGORY + MESSAGE_RECEIVE + MESSAGE_SEND + MESSAGE_SPECIES + MESSAGE_LONG + LOGINRESULT + TELLERID + TELLERTYPE + IDENTIFICATION + STUNSERVERIP + STUNSERVERPORT + STRING_LONG + stunUserNameLenth[0] + STRING_LONG + stunPwdLenth[0] + TURNSERVERIP + TURNSERVERPORT + STRING_LONG + turnUserNameLenth[0] + STRING_LONG + turnPwdLenth[0] + JSMPEGSERVERIP, jsmpegServerPort, 0, JSMPEGSERVERPORT);
+   //     System.arraycopy(messge, VERSION_LONG + COMMAND_TYPE_LONG + ALL_LONG + MESSAGE_CATRGORY + MESSAGE_RECEIVE + MESSAGE_SEND + MESSAGE_SPECIES + MESSAGE_LONG + LOGINRESULT + TELLERID + TELLERTYPE + IDENTIFICATION + STUNSERVERIP + STUNSERVERPORT + STRING_LONG + stunUserNameLenth[0] + STRING_LONG + stunPwdLenth[0] + TURNSERVERIP + TURNSERVERPORT + STRING_LONG + turnUserNameLenth[0] + STRING_LONG + turnPwdLenth[0] + JSMPEGSERVERIP, jsmpegServerPort, 0, JSMPEGSERVERPORT);
         this.command = HexUtils.bytesToIntBig(byteCommand);
         this.loginLenth = HexUtils.bytesToIntShortSmall(byteLoginLenth);
         this.command = HexUtils.bytesToIntBig(byteCommand);
@@ -355,17 +355,18 @@ public class LoginReciverd extends Head {
         this.stunPwd = new String(byteStunPwd);
         this.turnPwd = new String(byteTurnPwd);
         this.turnUserName = new String(byteTurnUserName);
-        int stunServerIp1=stunServerIp[0]& 0xFF;
-        int stunServerIp2=stunServerIp[1]& 0xFF;
-        int stunServerIp3=stunServerIp[2]& 0xFF;
-        int stunServerIp4=stunServerIp[3]& 0xFF;
-        short stunServerPortNum=HexUtils.bytesToIntShortBig(stunServerPort) ;
-        stunServer= String.valueOf(stunServerIp1)+"."+ String.valueOf(stunServerIp2)+"."+ String.valueOf(stunServerIp3)+"."+ String.valueOf(stunServerIp4)+":"+ String.valueOf(stunServerPortNum);
-        int turnServerIp1=turnServerIp[0]& 0xFF;
-        int turnServerIp2=turnServerIp[1]& 0xFF;
-        int turnServerIp3=turnServerIp[2]& 0xFF;
-        int turnServerIp4=turnServerIp[3]& 0xFF;
-        short turnServerPortNum=HexUtils.bytesToIntShortBig(turnServerPort) ;
-        turnServer= String.valueOf(turnServerIp1)+"."+ String.valueOf(turnServerIp2)+"."+ String.valueOf(turnServerIp3)+"."+ String.valueOf(turnServerIp4)+":"+ String.valueOf(turnServerPortNum);
+//        int stunServerIp1=stunServerIp[0]& 0xFF;
+//        int stunServerIp2=stunServerIp[1]& 0xFF;
+//        int stunServerIp3=stunServerIp[2]& 0xFF;
+//        int stunServerIp4=stunServerIp[3]& 0xFF;
+//        short stunServerPortNum=HexUtils.bytesToIntShortBig(stunServerPort) ;
+//        stunServer= String.valueOf(stunServerIp1)+"."+ String.valueOf(stunServerIp2)+"."+ String.valueOf(stunServerIp3)+"."+ String.valueOf(stunServerIp4)+":"+ String.valueOf(stunServerPortNum);
+//        int turnServerIp1=turnServerIp[0]& 0xFF;
+//        int turnServerIp2=turnServerIp[1]& 0xFF;
+//        int turnServerIp3=turnServerIp[2]& 0xFF;
+//        int turnServerIp4=turnServerIp[3]& 0xFF;
+//        short turnServerPortNum=HexUtils.bytesToIntShortBig(turnServerPort) ;
+//        turnServer= String.valueOf(turnServerIp1)+"."+ String.valueOf(turnServerIp2)+"."+ String.valueOf(turnServerIp3)+"."+ String.valueOf(turnServerIp4)+":"+ String.valueOf(turnServerPortNum);
+//
     }
 }

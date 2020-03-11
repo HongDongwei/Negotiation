@@ -11,10 +11,10 @@ public class ConnectUtils {
 
     private static final String TAG = "LongConnectService";
     public static final int REPEAT_TIME = 100;
-    public static String HOST = "192.168.1.181";//±íÊ¾IPµØÖ·
-    public static final int PORT = 12006;//±íÊ¾¶Ë¿ÚºÅ
-    public static final String DOMAIN = "192.168.1.181";
-    public static final int TIMEOUT = 5;//ÉèÖÃÁ¬½Ó³¬Ê±Ê±¼ä,³¬¹ı5s»¹Ã»Á¬½ÓÉÏ±ãÅ×³öÒì³£
+    public static String HOST = "172.30.71.11";//è¡¨ç¤ºIPåœ°å€
+    public static final int PORT = 12006;//è¡¨ç¤ºç«¯å£å·2
+    public static final String DOMAIN = "172.30.243.11";
+    public static final int TIMEOUT = 5;//è®¾ç½®è¿æ¥è¶…æ—¶æ—¶é—´,è¶…è¿‡5sè¿˜æ²¡è¿æ¥ä¸Šä¾¿æŠ›å‡ºå¼‚å¸¸
 
     public static final int LOGIN = 1;
     public static final int UNLOGIN = 0;
@@ -23,7 +23,7 @@ public class ConnectUtils {
 
 
     /**
-     * »ñÈ¡µ±Ç°Ê±¼ä
+     * è·å–å½“å‰æ—¶é—´
      *
      * @return
      */

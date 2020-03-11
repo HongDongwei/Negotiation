@@ -39,7 +39,22 @@
             android:name=".ui.MainActivity"
             android:permission="android.permission.CONFIGURE_SIP"
             android:theme="@style/MainTheme"></activity>
+        <!-- To be able to do video, this has to be launched in sipStack process -->
+        <activity
+            android:name=".incall.InCallActivity"
+            android:allowTaskReparenting="true"
+            android:configChanges="orientation"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:permission="android.permission.CONFIGURE_SIP"
+            android:process=":sipStack"
+            android:taskAffinity="">
+            <intent-filter android:priority="10">
+                <action android:name="com.csipsimple.phone.action.INCALL" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <service
             android:name=".socket.service.LongConnectService"
             android:label="HeartBeatService" />

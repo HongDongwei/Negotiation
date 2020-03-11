@@ -106,11 +106,11 @@ public final class PjSipCalls {
             int vidStreamIdx = pjsua.call_get_vid_stream_idx(session.getCallId());
             if(vidStreamIdx >= 0) {
                 //todo
-                 //int hasCapVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_ENCODING);
-                 int hasRendVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_DECODING);
-                 Log.d(THIS_FILE,"vidStreamIdx=" + vidStreamIdx + ", hasRendVid=" + hasRendVid);// + ", hasCapVid=" + hasCapVid
-                 //session.setMediaHasVideo(((hasCapVid | hasRendVid) == pjsuaConstants.PJ_TRUE));
-                session.setMediaHasVideo((hasRendVid == pjsuaConstants.PJ_TRUE));
+                int hasCapVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_ENCODING);
+                int hasRendVid = pjsua.call_vid_stream_is_running(session.getCallId(), vidStreamIdx, pjmedia_dir.PJMEDIA_DIR_DECODING);
+                Log.d(THIS_FILE,"vidStreamIdx=" + vidStreamIdx + ", hasRendVid=" + hasRendVid + ", hasCapVid=" + hasCapVid);
+                session.setMediaHasVideo(((hasCapVid | hasRendVid) == pjsuaConstants.PJ_TRUE));
+                //session.setMediaHasVideo((hasRendVid == pjsuaConstants.PJ_TRUE));
             }
             
 

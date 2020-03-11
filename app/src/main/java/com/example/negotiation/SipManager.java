@@ -96,7 +96,7 @@ public class SipManager {
 
     //初始化设置
     public void initSipSet(LoginReciverd loginReciverd) {
-        preferencesWrapper.setPreferenceStringValue(STUN_SERVER, "192.168.1.181");
+        preferencesWrapper.setPreferenceStringValue(STUN_SERVER, HOST);
         preferencesWrapper.setPreferenceStringValue(TURN_SERVER, HOST + ":3478");
         preferencesWrapper.setPreferenceStringValue(TURN_USERNAME, loginReciverd.getTurnUserName());
         preferencesWrapper.setPreferenceStringValue(TURN_PASSWORD, loginReciverd.getTurnPwd());

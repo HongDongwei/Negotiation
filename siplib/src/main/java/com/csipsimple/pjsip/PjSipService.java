@@ -1241,7 +1241,7 @@ public class PjSipService {
             pjsua.call_setting_default(cs);
             cs.setAud_cnt(1);
             cs.setVid_cnt(1);
-            cs.setVtc_type(3); //呼叫对象的类型
+            cs.setVtc_type(1); //呼叫对象的类型
             cs.setVtc_id(1694);//呼叫对象的id, 和callee一样
             pj_str_t conf = new pj_str_t(); conf.setPtr("123"); conf.setSlen(3);
             cs.setConfcode(conf);

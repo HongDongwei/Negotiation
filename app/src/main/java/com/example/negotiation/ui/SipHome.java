@@ -34,7 +34,6 @@ import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.ui.account.AccountsEditList;
 import com.csipsimple.ui.calllog.CallLogListFragment;
-import com.csipsimple.ui.dialpad.DialerFragment;
 import com.csipsimple.ui.favorites.FavListFragment;
 import com.csipsimple.ui.help.Help;
 import com.csipsimple.ui.messages.ConversationsListFragment;
@@ -146,8 +145,7 @@ public class SipHome extends AppCompatActivity implements WarningUtils.OnWarning
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 //
-//        // showAbTitle = Compatibility.hasPermanentMenuKey
-//
+//      showAbTitle = Compatibility.hasPermanentMenuKey
 //
         ActionBar.Tab dialerTab = mActionBar.newTab()
                 .setContentDescription(me.xujichang.lib.csipsimple.R.string.dial_tab_name_text)
@@ -195,7 +193,7 @@ public class SipHome extends AppCompatActivity implements WarningUtils.OnWarning
      * details of connecting a ViewPager with associated TabHost. It relies on a
      * trick. Normally a tab host has a simple API for supplying a View or
      * Intent that each tab will show. This is not sufficient for switching
-     * between pages. So instead we make the content part of the tab host 0dp
+     * between pages. So instead we make the content part of the tab host
      * high (it is not shown) and the TabsAdapter supplies its own dummy view to
      * show as the tab content. It listens to changes in tabs, and takes care of
      * switch to the correct paged in the ViewPager whenever the selected tab

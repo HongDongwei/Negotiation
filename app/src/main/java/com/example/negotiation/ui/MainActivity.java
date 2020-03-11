@@ -140,21 +140,26 @@ public class MainActivity extends Activity {
         cvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(etUser.getText())) {
-                    inputUser.setError("用户账号不能为空");
-                    return;
-                }
-                if (TextUtils.isEmpty(etPwd.getText())) {
-                    inputPassword.setError("用户密码不能为空");
-                    return;
-                }
-                if (TextUtils.isEmpty(etConfCode.getText())) {
-                    inputConfCode.setError("用户会议码不能为空");
-                    return;
-                }
-                userName = etUser.getText().toString();
-                userPwd = etPwd.getText().toString();
-                userConfCode = etConfCode.getText().toString();
+//
+//                if (TextUtils.isEmpty(etUser.getText())) {
+//                    inputUser.setError("用户账号不能为空");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(etPwd.getText())) {
+//                    inputPassword.setError("用户密码不能为空");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(etConfCode.getText())) {
+//                    inputConfCode.setError("用户会议码不能为空");
+//                    return;
+//                }
+//                userName = etUser.getText().toString();
+//                userPwd = etPwd.getText().toString();
+//                userConfCode = etConfCode.getText().toString();
+//                initLogin(userName, userPwd, userConfCode);
+                userName = "qsgzz12";
+                userPwd = "12345678";
+                userConfCode = "123";
                 initLogin(userName, userPwd, userConfCode);
                 SessionManager.getInstance().writeBytesToServer(loginbytes);
             }
